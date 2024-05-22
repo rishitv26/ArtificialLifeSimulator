@@ -8,6 +8,7 @@ typedef std::vector<std::vector<double>> InteractionMatrix;
 * A Particle Structure that contains basic information of a particle.
 */
 struct Particle {
+	size_t type = 0;
 	double vX = 0;
 	double vY = 0;
 	double x;
@@ -20,6 +21,7 @@ struct Particle {
 	Particle(double _x, double _y);
 	Particle(double _x, double _y, int R, int G, int B);
 	Particle(double _x, double _y, int R, int G, int B, double mass);
+	Particle(double _x, double _y, int R, int G, int B, double mass, unsigned int type);
 };
 
 /*
@@ -38,7 +40,7 @@ private:
 	int WIDTH;
 	int HEIGHT;
 public:
-	LifeSnapshot(int amt, double mass, int width, int height, int colorR, int colorG, int colorB);
+	LifeSnapshot(std::vector<int> amt, double mass, int width, int height, int colorR, int colorG, int colorB);
 	/*
 	* Set the barrier threshold for the amount of force required to exert rebound force.
 	* TODO.
@@ -70,4 +72,16 @@ public:
 	* Updates all values and modifies points based on interaction matrix
 	*/
 	void update();
+	/*
+	* Adds a particle to the canandrum.
+	* 
+	* @param p the particle to add.
+	*/
+	void addParticle(Particle p);
+	/*
+	* Adds a particle to the canandrum.
+	*
+	* @param p the particle to add.
+	*/
+	void addParticle(Particle* p);
 };
